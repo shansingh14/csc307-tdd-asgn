@@ -1,58 +1,56 @@
-const createAccount = () => {
-  return {};
-};
-
-const isAccountEmpty = (account) => {
-  if (Object.keys(account).length === 0) {
-    return true;
+class StockPortfolio {
+  constructor() {
+    this.portfolio = {};
   }
-  return false;
-};
 
-const stockCount = (account) => {
-  return Object.keys(account).length;
-};
-
-const buyStock = (ticker, shares, account) => {
-  if (account[ticker]) {
-    account[ticker] += shares;
-    return account;
+  isAccountEmpty() {
+    if (Object.keys(this.portfolio).length === 0) {
+      return true;
+    }
+    return false;
   }
-  account[ticker] = shares;
-  return account;
-};
 
-const sellStock = (ticker, shares, account) => {
-  if (account[ticker] && shares <= account[ticker]) {
-    account[ticker] -= shares;
-    account = remEmptyStocks(account);
-    return account;
+  stockCount() {
+    return Object.keys(this.portfolio).length;
   }
-  throw new Error('ShareSaleException');
-};
 
-const getShares = (ticker, account) => {
-  if (account[ticker]) {
-    return account[ticker];
+  buyStock(ticker, shares) {
+    if (this.portfolio[ticker]) {
+      this.portfolio[ticker] += shares;
+    }
+    this.portfolio[ticker] = shares;
   }
-  return -1;
-};
 
-const remEmptyStocks = (account) => {
-  for (const property in account) {
-    if (account[property] == 0) {
-      delete account[property];
+  sellStock(ticker, shares) {
+    if (this.portfolio[ticker] && shares <= this.portfolio[ticker]) {
+      this.portfolio[ticker] -= shares;
+      this.remEmptyStocks();
+    } else {
+      throw new ShareSaleException();
     }
   }
-  return account
-};
 
-export default {
-  createAccount,
-  isAccountEmpty,
-  stockCount,
-  buyStock,
-  sellStock,
-  getShares,
-  remEmptyStocks,
-};
+  getShares(ticker) {
+    if (this.portfolio[ticker]) {
+      return this.portfolio[ticker];
+    }
+    return -1;
+  }
+
+  remEmptyStocks() {
+    for (const property in this.portfolio) {
+      if (this.portfolio[property] == 0) {
+        delete this.portfolio[property];
+      }
+    }
+  }
+}
+
+class ShareSaleException extends Error {
+  constructor() {
+    super("Sale exceeded exsiting number of shares");
+    this.name = "ShareSaleException";
+  }
+}
+
+export default StockPortfolio;
