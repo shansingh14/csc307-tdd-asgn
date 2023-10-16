@@ -1,0 +1,18 @@
+{
+  "name": "csc307-tdd-asgn",
+  "version": "1.0.0",
+  "description": "assignment for practicing TDD",
+  "type": "module",
+  "main": "stock-tdd.js",
+  "scripts": {
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "tdd": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
+    "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --collectCoverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0"
+  }
+}
