@@ -59,15 +59,15 @@ test("Testing Buy Stock Functionality", () => {
   expect(expected).toStrictEqual(stock.portfolio);
 });
 
-test("Testing Buy Stock Functionality -- Not viable stock number", () => {
+test("Testing Buy Stock Functionality -- Exisiting stock", () => {
   const expected = {
     GME: 5,
-    RBLX: 10,
+    RBLX: 13,
   };
   const stock = new StockPortfolio();
   stock.portfolio = {
     GME: 5,
-    RBLX: 13,
+    RBLX: 10,
   };
 
   stock.buyStock("RBLX", 3);
