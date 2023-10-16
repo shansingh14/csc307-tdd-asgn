@@ -15,10 +15,12 @@ class StockPortfolio {
   }
 
   buyStock(ticker, shares) {
-    if (this.portfolio[ticker]) {
-      this.portfolio[ticker] += shares;
+    if(shares > 0){
+        if (this.portfolio[ticker]) {
+          this.portfolio[ticker] += shares;
+        }
+        this.portfolio[ticker] = shares;
     }
-    this.portfolio[ticker] = shares;
   }
 
   sellStock(ticker, shares) {

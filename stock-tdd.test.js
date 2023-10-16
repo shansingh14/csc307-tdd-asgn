@@ -59,6 +59,21 @@ test("Testing Buy Stock Functionality", () => {
   expect(expected).toStrictEqual(stock.portfolio);
 });
 
+test("Testing Buy Stock Functionality -- Not viable stock number", () => {
+  const expected = {
+    GME: 5,
+    RBLX: 10,
+  };
+  const stock = new StockPortfolio();
+  stock.portfolio = {
+    GME: 5,
+    RBLX: 10,
+  };
+
+  stock.buyStock("SPY", -3);
+  expect(expected).toStrictEqual(stock.portfolio);
+});
+
 test("Testing Selling Stock Functionality", () => {
   const expected = {
     GME: 5,
